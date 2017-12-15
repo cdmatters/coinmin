@@ -5,7 +5,6 @@
 
 function coinmin(){
 
-  CURR="GBP"
   LIMIT="10"
   API="https://api.coinmarketcap.com/v1/ticker/?"
   FIELDS='rank\|symbol\|price_usd\|percent\|cap'
@@ -16,7 +15,7 @@ function coinmin(){
   grey=$(tput bold)$(tput setaf 0)
   reset=$(tput sgr0 )
   
-  curl -s  $API"limit="$LIMIT"&curr"$CURR | \
+  curl -s  $API"limit="$LIMIT |\
     grep $FIELDS  |\
     sed 's/ *"symbol": "\(.*\)"/- \1/' |\
     sed 's/^.*\": \"\(.*\)\"/\1/'   |\
@@ -28,7 +27,7 @@ function coinmin(){
       for (i in coin){
           split(coin[i], c, /, /)
           if (c[2] != ""){
-              printf "| %-4s | %-10s | %-12.2f | +%-7.2f | +%-7.2f | +%-7.2f | %-8.3f |\n", 
+              printf "| %-4s | %-10s | %-12.4f | +%-7.2f | +%-7.2f | +%-7.2f | %-8.3f |\n", 
               c[2], c[1], c[3], c[6], c[5], c[7], (c[4]/1000000000)
               printf "|------|------------|--------------|----------|----------|----------|----------|\n"
         }}       
@@ -43,4 +42,6 @@ function coinmin(){
 
 }
 
+
 coinmin $@
+
