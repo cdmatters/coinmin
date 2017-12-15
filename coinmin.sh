@@ -1,7 +1,5 @@
 #/usr/bin/bash
 
-
-
 function coinmin(){
 
   YELLOW=$(tput setaf 3)
@@ -19,15 +17,16 @@ function coinmin(){
  "$RESET
 
 
-  LIMIT="10"
+  LIMIT="8"
   API="https://api.coinmarketcap.com/v1/ticker/?"
   FIELDS='rank\|symbol\|price_usd\|percent\|cap'
 
   BAR1="|------------------------------------------------------------------------------|\n"
   BAR2="|------|------------|--------------|----------|----------|----------|----------|\n"
-
+  PAD="___________________________"
 
   # Okay so I went HAM on the one liner...
+  echo $PAD $(date +"%a %b %d %Y %T") | sed 's/_/  /g'
   curl -s  $API"limit="$LIMIT |\
     grep $FIELDS  |\
     sed 's/ *"symbol": "\(.*\)"/- \1/' |\
@@ -47,9 +46,10 @@ function coinmin(){
       }      
     }' |\
     sed -E  "s/([A-Z0-9]+[a-z]+)|(\+\/\-)|(\(USD\))/"$YELLOW"\1\2\3"$RESET"/g"|\
-    sed -E  "s/\+(\-[0-9.]+)/"$RED"\1 "$RESET"/g" |\
-    sed -E  "s/(\+[0-9.]+)/"$GREEN"\1"$RESET"/g" |\
+    sed -E  "s/\+(\-[0-9.]+) /"$RED"\1% "$RESET"/g" |\
+    sed -E  "s/(\+[0-9.]+) /"$GREEN"\1%"$RESET"/g" |\
     sed -E  "s/(\|)|(--+)/"$GREY"\1\2"$RESET"/g"
+    echo
 
 }
 
