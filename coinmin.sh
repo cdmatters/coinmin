@@ -25,8 +25,9 @@ function coinmin(){
   BAR2="|------|------------|--------------|----------|----------|----------|----------|\n"
   PAD="___________________________"
 
-  # Okay so I went HAM on the one liner...
   echo $PAD $(date +"%a %b %d %Y %T") | sed 's/_/  /g'
+  
+  # Okay so I went HAM on the one liner...
   curl -s  $API"limit="$LIMIT |\
     grep $FIELDS  |\
     sed 's/ *"symbol": "\(.*\)"/- \1/' |\
