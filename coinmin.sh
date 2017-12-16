@@ -17,7 +17,7 @@ function coinmin(){
  "$RESET
 
 
-  LIMIT="8"
+  LIMIT="${1:-10}"
   API="https://api.coinmarketcap.com/v1/ticker/?"
   FIELDS='rank\|symbol\|price_usd\|percent\|cap'
 
