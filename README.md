@@ -2,7 +2,7 @@
 
 *A "One-Liner" Reimplementation of [Coinmon](https://github.com/bichenkk/coinmon.git) in Bash*
 
-#### Why?
+### Why?
 
 A few days ago I was stumbled across coinmon, a CLI tool for checking cryptoprices. I thought it was pretty neat, but as I looked into the code I was surprised by how many [dependencies](http://npm.anvaka.com/#/view/2d/coinmon) it had! I didnt really want to install all those packages into an nodeenv, just to read some numbers from the internet, but I did think it looked v cool.
 
