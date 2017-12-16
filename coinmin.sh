@@ -55,5 +55,5 @@ function coinmin(){
 }
 
 
-coinmin $@
+# coinmin $@
 
